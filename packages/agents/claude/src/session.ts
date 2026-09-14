@@ -25,9 +25,9 @@ export interface DiscoveredProject {
  * count before any processing happens.
  *
  * The directory name looks like a path but is a lossy [^A-Za-z0-9]->'-' mapping:
- * `/Users/jj/paxel2.0` and `/Users/jj/paxel_2-0` both encode to
- * `-Users-jj-paxel2-0`. It is used only as a grouping key; the real path comes
- * from the `cwd` field every record carries.
+ * `/Users/dev/project2.0` and `/Users/dev/project2-0` both encode to
+ * `-Users-dev-project2-0`. It is used only as a grouping key; the real path
+ * comes from the `cwd` field every record carries.
  */
 export async function discoverProjects(
   projectsDir: string = PROJECTS_DIR,

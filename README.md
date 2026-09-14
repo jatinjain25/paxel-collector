@@ -72,7 +72,7 @@ bun packages/cli/src/main.ts analyze
 
 ## About this repository
 
-Generated from the private monorepo, one way, at each release — this tree is cut from `3065464`.
+Generated from the private monorepo, one way, at each release — this tree is cut from `72ab8f7`.
 Nothing is edited here directly, so pull requests against it cannot be merged as-is; open an issue
 instead and the fix will arrive on the next sync.
 

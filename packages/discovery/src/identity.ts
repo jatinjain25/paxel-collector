@@ -12,9 +12,9 @@ import { dirname, join, resolve } from "node:path";
  * and then episodes never span tools: a builder who used Cursor and Claude Code
  * on the same work gets two fragmented halves and a depressed completion rate.
  *
- * Observed on a real machine before this existed: `/Users/jj/git-starter-buddy`,
- * `/Users/jj/git-starter-buddy-1` and
- * `/Users/jj/git-starter-buddy/RushMatch/git-starter-buddy` were three separate
+ * Observed on a real machine before this existed: `/Users/dev/starter`,
+ * `/Users/dev/starter-1` and
+ * `/Users/dev/starter/nested/starter` were three separate
  * projects.
  *
  * Walking up for `.git` rather than shelling out to `git rev-parse` keeps this
