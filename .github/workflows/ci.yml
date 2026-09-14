@@ -1,0 +1,27 @@
+name: ci
+
+# This repository is generated from a private monorepo, so the tests here are
+# the ones that travel with the collector. They are also the ones that state
+# the guarantees the README makes: network confinement, and that the wire
+# projection drops local-only data.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun test

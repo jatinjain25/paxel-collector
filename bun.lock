@@ -1,0 +1,169 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "builder-collector",
+      "devDependencies": {
+        "@types/bun": "latest",
+        "typescript": "^5.7.2",
+      },
+    },
+    "packages/agents/claude": {
+      "name": "@builder/agent-claude",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/agent-core": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/agents/codex": {
+      "name": "@builder/agent-codex",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/agent-core": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/agents/core": {
+      "name": "@builder/agent-core",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/agents/cursor": {
+      "name": "@builder/agent-cursor",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/agent-core": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/agents/opencode": {
+      "name": "@builder/agent-opencode",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/agent-core": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/cli": {
+      "name": "@builder/cli",
+      "version": "0.0.0",
+      "bin": {
+        "builder": "./src/main.ts",
+      },
+      "dependencies": {
+        "@builder/derive": "workspace:*",
+        "@builder/discovery": "workspace:*",
+        "@builder/episodes": "workspace:*",
+        "@builder/features": "workspace:*",
+        "@builder/scoring": "workspace:*",
+        "@builder/types": "workspace:*",
+        "@builder/upload": "workspace:*",
+      },
+    },
+    "packages/derive": {
+      "name": "@builder/derive",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/episodes": "workspace:*",
+        "@builder/features": "workspace:*",
+        "@builder/scoring": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/discovery": {
+      "name": "@builder/discovery",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/agent-claude": "workspace:*",
+        "@builder/agent-codex": "workspace:*",
+        "@builder/agent-core": "workspace:*",
+        "@builder/agent-cursor": "workspace:*",
+        "@builder/agent-opencode": "workspace:*",
+        "@builder/git": "workspace:*",
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/episodes": {
+      "name": "@builder/episodes",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/features": {
+      "name": "@builder/features",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/git": {
+      "name": "@builder/git",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/scoring": {
+      "name": "@builder/scoring",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+    "packages/types": {
+      "name": "@builder/types",
+      "version": "0.0.0",
+    },
+    "packages/upload": {
+      "name": "@builder/upload",
+      "version": "0.0.0",
+      "dependencies": {
+        "@builder/types": "workspace:*",
+      },
+    },
+  },
+  "packages": {
+    "@builder/agent-claude": ["@builder/agent-claude@workspace:packages/agents/claude"],
+
+    "@builder/agent-codex": ["@builder/agent-codex@workspace:packages/agents/codex"],
+
+    "@builder/agent-core": ["@builder/agent-core@workspace:packages/agents/core"],
+
+    "@builder/agent-cursor": ["@builder/agent-cursor@workspace:packages/agents/cursor"],
+
+    "@builder/agent-opencode": ["@builder/agent-opencode@workspace:packages/agents/opencode"],
+
+    "@builder/cli": ["@builder/cli@workspace:packages/cli"],
+
+    "@builder/derive": ["@builder/derive@workspace:packages/derive"],
+
+    "@builder/discovery": ["@builder/discovery@workspace:packages/discovery"],
+
+    "@builder/episodes": ["@builder/episodes@workspace:packages/episodes"],
+
+    "@builder/features": ["@builder/features@workspace:packages/features"],
+
+    "@builder/git": ["@builder/git@workspace:packages/git"],
+
+    "@builder/scoring": ["@builder/scoring@workspace:packages/scoring"],
+
+    "@builder/types": ["@builder/types@workspace:packages/types"],
+
+    "@builder/upload": ["@builder/upload@workspace:packages/upload"],
+
+    "@types/bun": ["@types/bun@1.4.2", "", { "dependencies": { "bun-types": "1.4.2" } }, "sha512-GimotNn7+ZV0uVArItBbriZsR1oNf0+WTzPkdcFrzShI7k2norL0uzEaJT8T33dWr7O/c9ZDuAFQrctKCi72oQ=="],
+
+    "@types/node": ["@types/node@26.5.1", "", { "dependencies": { "undici-types": "~8.9.0" } }, "sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g=="],
+
+    "bun-types": ["bun-types@1.4.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-bxV1FgK7yBIzjRe5zBozIM4Bem11ZJcCXSrjWRG3YWLt8yFDePu4cLjpebO8OvPeIE9trbyPF4fuj3Cia4Fj3w=="],
+
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+
+    "undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
+  }
+}

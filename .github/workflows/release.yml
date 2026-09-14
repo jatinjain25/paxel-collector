@@ -1,0 +1,55 @@
+name: release
+
+# The binaries the install line downloads are built HERE, from the source in
+# this repository, so "the collector is open source" is a claim somebody can
+# act on: read this, then check that what you installed came from it.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release at (e.g. v0.1.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  binaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+
+      # Never publish an artifact from a tree that does not pass. A broken
+      # binary is worse than a missing one: it is installed before it fails.
+      - run: bun run typecheck
+      - run: bun test
+
+      # `bun build --compile` cross-compiles, so all four targets come off one
+      # runner. Each embeds the Bun runtime and is 60-95 MB, which is why they
+      # are release assets rather than anything served from the site.
+      - run: bun run infra/build-binaries.ts
+      - run: ls -lh dist/ && cat dist/SHA256SUMS
+
+      # SHA256SUMS travels with them: the installer verifies the checksum
+      # BEFORE chmod, so without this file every install refuses.
+      - name: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes \
+            --target "$GITHUB_SHA" \
+            dist/builder-darwin-arm64 \
+            dist/builder-darwin-x64 \
+            dist/builder-linux-x64 \
+            dist/builder-linux-arm64 \
+            dist/SHA256SUMS
