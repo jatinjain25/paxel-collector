@@ -64,7 +64,9 @@ export interface EvidenceCounts {
  * number, so a forged rank is not a matter of editing one integer: it requires
  * fabricating a hundred thousand internally consistent events with believable
  * timing, correct call/result pairing and a plausible multi-month window. The
- * catcher in `packages/integrity` then checks exactly those properties.
+ * catcher then checks exactly those properties, on the server, in a package
+ * this one deliberately does not ship: naming what is looked for would be a
+ * list of what to avoid.
  *
  * Be precise about what that is worth. Nobody can PREVENT edits on hardware
  * somebody else controls — the collector is open source, the signing key is on
